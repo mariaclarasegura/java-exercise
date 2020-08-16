@@ -1,5 +1,8 @@
 package exercise2;
 
+import javax.swing.*;
+import java.util.Scanner;
+
 public class Main {
     /*
     2) Haz una clase llamada Persona que siga las siguientes condiciones:
@@ -26,4 +29,40 @@ Indicar para cada objeto si es mayor de edad.
 Por último, mostrar la información de cada objeto.
 Puedes usar métodos en la clase ejecutable, para que os sea mas fácil.
      */
+
+    public static void main(String[] args) {
+        String nombre = JOptionPane.showInputDialog("Introduce el nombre");
+
+        String texto = JOptionPane.showInputDialog("Introduce la edad");
+        int edad = Integer.parseInt(texto);
+
+        texto = JOptionPane.showInputDialog("Introduce el sexo");
+        char sexo = texto.charAt(0);
+
+        texto = JOptionPane.showInputDialog("Introduce el peso");
+        double peso = Double.parseDouble(texto);
+
+        texto = JOptionPane.showInputDialog("Introduce la altura");
+        double altura = Double.parseDouble(texto);
+
+        Persona persona1 = new Persona(nombre, edad, sexo, peso, altura);
+        System.out.println("Persona 1 : " + persona1.calcularIMC());
+        System.out.println("Persona 1 es mayor de edad: " + persona1.esMayorDeEdad());
+        Persona persona2 = new Persona(nombre, edad, sexo);
+        System.out.println("Persona 2 : " + persona2.calcularIMC());
+        System.out.println("Persona 2 es mayor de edad: " + persona2.esMayorDeEdad());
+        Persona persona3 = new Persona();
+        persona3.setNombre(nombre);
+        persona3.setEdad(edad);
+        persona3.setSexo(sexo);
+        persona3.setPeso(peso);
+        persona3.setAltura(altura);
+        System.out.println("Persona 3 : " + persona3.calcularIMC());
+        System.out.println("Persona 3 es mayor de edad: " + persona3.esMayorDeEdad());
+
+        System.out.println(persona1.toString());
+        System.out.println(persona2.toString());
+        System.out.println(persona3.toString());
+
+    }
 }

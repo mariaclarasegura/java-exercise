@@ -12,7 +12,7 @@ public class Persona {
     private char sexo;
     private double peso;
     private double altura;
-    private int dni;
+    private String dni;
 
     private final int INFRAPESO = -1;
     private final int PESO_IDEAL = 0;
@@ -30,13 +30,14 @@ public class Persona {
         this.altura = ALTURA_DEFAULT;
     }
 
-    public Persona(String nombre, int edad, char sexo, double peso, double altura, int dni) {
+    public Persona(String nombre, int edad, char sexo, double peso, double altura) {
         this.nombre = nombre;
         this.edad = edad;
-        this.sexo = sexo;
         this.peso = peso;
         this.altura = altura;
-        this.dni = dni;
+        generarDni();
+        this.sexo = sexo;
+        comprobarSexo();
     }
 
     public int calcularIMC() {
@@ -55,7 +56,7 @@ public class Persona {
         return edad >= 18;
     }
 
-    private void comprobarSexo(char sexo) {
+    private void comprobarSexo() {
         if (sexo != 'H' && sexo != 'M') {
             this.sexo = SEXO_DEFAULT;
         }
@@ -71,5 +72,47 @@ public class Persona {
                 ", altura=" + altura +
                 ", dni=" + dni +
                 '}';
+    }
+
+    private void generarDni() {
+        final int divisor = 23;
+
+        //Generamos un número de 8 digitos
+        int numDNI = ((int) Math.floor(Math.random() * (100000000 - 10000000) + 10000000));
+        int res = numDNI - (numDNI / divisor * divisor);
+
+        //Calculamos la letra del DNI
+        char letraDNI = generaLetraDNI(res);
+
+        //Pasamos el DNI a String
+        dni = Integer.toString(numDNI) + letraDNI;
+    }
+
+    private char generaLetraDNI(int res) {
+        char letras[] = {'T', 'R', 'W', 'A', 'G', 'M', 'Y',
+                'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z',
+                'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E'};
+
+        return letras[res];
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public void setSexo(char sexo) {
+        this.sexo = sexo;
+    }
+
+    public void setPeso(double peso) {
+        this.peso = peso;
+    }
+
+    public void setAltura(double altura) {
+        this.altura = altura;
     }
 }
