@@ -1,6 +1,7 @@
 package exercise3;
 
 import java.util.UUID;
+import java.util.regex.Pattern;
 
 public class Password {
     private final int LONGITUD_DEF = 8;
@@ -10,17 +11,31 @@ public class Password {
     public Password() {
     }
 
-    /* TODO IMPLEMENTAR ESTE METODO
-     public boolean esFuerte(contraseña){
-        if (longitud>11){
-        }
-    */
+    public boolean esFuerte() {
+        int ocurrenciasMayus = 0;
+        int ocurrenciasMinus = 0;
+        int ocurrenciasNum = 0;
 
-    public String generarPassword() {
+        for (int i = 0; i < contraseña.length(); i++) {
+            if (Character.isUpperCase(contraseña.charAt(i))) {
+                ocurrenciasMayus++;
+            }
+            if (Character.isLowerCase(contraseña.charAt(i))) {
+                ocurrenciasMinus++;
+            }
+            if (Character.isDigit(contraseña.charAt(i))) {
+                ocurrenciasNum++;
+            }
+        }
+        return (ocurrenciasMayus > 2 && ocurrenciasMinus > 1 && ocurrenciasNum > 5);
+
+    }
+
+    public void generarPassword() {
         if (longitud > 0) {
-            return UUID.randomUUID().toString().replace("-", "").substring(0, longitud);
+            contraseña = UUID.randomUUID().toString().replace("-", "").substring(0, longitud);
         } else {
-            return UUID.randomUUID().toString().replace("-", "").substring(0, LONGITUD_DEF);
+            contraseña = UUID.randomUUID().toString().replace("-", "").substring(0, LONGITUD_DEF);
         }
     }
 
