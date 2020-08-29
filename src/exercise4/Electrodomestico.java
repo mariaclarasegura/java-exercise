@@ -48,6 +48,14 @@ public class Electrodomestico {
     }
 
     private boolean comprobarConsumoEnergetico(char letra) {
-        Letra.comprobarLetra(letra);
+        return Letra.comprobarLetra(letra);
+    }
+
+    private boolean comprobarColor(String color) {
+        return Color.comprobarColor(color);
+    }
+
+    public int precioFinal() {
+        return Contabilidad.calcularPrecio(consumoEnergetico, peso);
     }
 }

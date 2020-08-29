@@ -18,7 +18,7 @@ public enum Letra {
                 letra == getChar(F);
     }
 
-    private static char getChar(Letra letra) {
+    public static char getChar(Letra letra) {
         return letra.toString().charAt(0);
     }
 }
