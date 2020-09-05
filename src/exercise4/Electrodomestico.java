@@ -12,6 +12,10 @@ public class Electrodomestico {
     private final int PESO_DEF = 5;
 
     public Electrodomestico() {
+        precioBase=PRECIO_BASE_DEF;
+        color=COLOR_DEF;
+        consumoEnergetico=CONSUMO_ELECTRICO;
+        peso=PESO_DEF;
         comprobarConsumoEnergetico(CONSUMO_ELECTRICO);
     }
 
